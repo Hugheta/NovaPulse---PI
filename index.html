@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMIP – Dashboard de Desafios</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="header-logo">
+    <div class="logo-icon">+</div>
+    <div>
+      <div class="logo-text">IMIP</div>
+      <div class="logo-sub">Dashboard de Desafios</div>
+    </div>
+  </div>
+  <div id="clock">--:--:--</div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-label">Desafios</div>
+
+    <button class="nav-item active" onclick="showPage('p1', this)">
+      <span class="nav-dot"></span> Higiene e Abastecimento
+    </button>
+    <button class="nav-item" onclick="showPage('p2', this)">
+      <span class="nav-dot"></span> Quimioterapia
+    </button>
+    <button class="nav-item" onclick="showPage('p3', this)">
+      <span class="nav-dot"></span> Tempo de Permanência
+    </button>
+    <button class="nav-item" onclick="showPage('p4', this)">
+      <span class="nav-dot"></span> Antimicrobianos
+    </button>
+  </aside>
+
+  
+  <main>
+
+    <!-- pagina 1 -->
+    <div class="page active" id="p1">
+      <div class="page-header">
+        <h1>Higiene e Abastecimento</h1>
+        <p>Quanto tem de cada insumo nas alas — atualiza sozinho</p>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Alas no sistema</div>
+          <div class="metric-value">12</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Faltando agora</div>
+          <div class="metric-value danger" id="m1-crit">3</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Registros hoje</div>
+          <div class="metric-value ok" id="m1-chk">47</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Alas ok</div>
+          <div class="metric-value warn" id="m1-conf">74%</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Estoque atual — Ala Norte</div>
+        <div class="bar-row">
+          <span class="bar-label">Álcool gel</span>
+          <div class="bar-track"><div class="bar-fill" style="width:22%; background:#c0392b;"></div></div>
+          <span class="bar-val danger">22%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Luvas</span>
+          <div class="bar-track"><div class="bar-fill" style="width:58%; background:#b87300;"></div></div>
+          <span class="bar-val warn">58%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Máscara N95</span>
+          <div class="bar-track"><div class="bar-fill" style="width:81%; background:#1a9e72;"></div></div>
+          <span class="bar-val ok">81%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Sabão</span>
+          <div class="bar-track"><div class="bar-fill" style="width:15%; background:#c0392b;"></div></div>
+          <span class="bar-val danger">15%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Papel toalha</span>
+          <div class="bar-track"><div class="bar-fill" style="width:63%; background:#b87300;"></div></div>
+          <span class="bar-val warn">63%</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Avisos</div>
+        <div class="alert alert-danger">
+          <span class="alert-icon">▲</span>
+          <span>Álcool gel acabando na Ala Norte — ninguém pediu reposição ainda</span>
+        </div>
+        <div class="alert alert-danger">
+          <span class="alert-icon">▲</span>
+          <span>Sabão no PS tá crítico — último registro foi há 6 horas</span>
+        </div>
+        <div class="alert alert-warn">
+          <span class="alert-icon">!</span>
+          <span>Luvas na UTI tão baixando — vale ficar de olho</span>
+        </div>
+        <div class="alert alert-ok">
+          <span class="alert-icon">✓</span>
+          <span>Máscaras N95 repostas na Ala Cirúrgica hoje cedo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="p2">
+      <div class="page-header">
+        <h1>Salão de Quimioterapia</h1>
+        <p>Mostra quem tá esperando, quem já começou e quantas cadeiras tão livres</p>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Pacientes hoje</div>
+          <div class="metric-value">28</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Ainda esperando</div>
+          <div class="metric-value warn" id="m2-esp">6</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Cadeiras livres</div>
+          <div class="metric-value ok" id="m2-pol">4</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Espera média</div>
+          <div class="metric-value warn" id="m2-tmp">52 min</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Pacientes de hoje</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Paciente</th>
+                <th>Triagem</th>
+                <th>Remédio</th>
+                <th>Situação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>M. Santos</td>
+                <td>ok</td>
+                <td>pronto</td>
+                <td><span class="badge badge-ok">tomando</span></td>
+              </tr>
+              <tr>
+                <td>J. Oliveira</td>
+                <td>ok</td>
+                <td>preparando</td>
+                <td><span class="badge badge-warn">esperando</span></td>
+              </tr>
+              <tr>
+                <td>A. Lima</td>
+                <td>pendente</td>
+                <td>bloqueado</td>
+                <td><span class="badge badge-danger">parado</span></td>
+              </tr>
+              <tr>
+                <td>C. Ferreira</td>
+                <td>ok</td>
+                <td>pronto</td>
+                <td><span class="badge badge-ok">tomando</span></td>
+              </tr>
+              <tr>
+                <td>R. Costa</td>
+                <td>ok</td>
+                <td>preparando</td>
+                <td><span class="badge badge-warn">esperando</span></td>
+              </tr>
+              <tr>
+                <td>P. Barbosa</td>
+                <td>reprovada</td>
+                <td>cancelado</td>
+                <td><span class="badge badge-danger">cancelado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Cadeiras em uso por horário</div>
+        <div class="bar-row">
+          <span class="bar-label">07h – 08h</span>
+          <div class="bar-track"><div class="bar-fill" style="width:20%; background:#c0392b;"></div></div>
+          <span class="bar-val danger">4/20</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">08h – 09h</span>
+          <div class="bar-track"><div class="bar-fill" style="width:55%; background:#b87300;"></div></div>
+          <span class="bar-val warn">11/20</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">09h – 10h</span>
+          <div class="bar-track"><div class="bar-fill" style="width:85%; background:#1a9e72;"></div></div>
+          <span class="bar-val ok">17/20</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">10h – 11h</span>
+          <div class="bar-track"><div class="bar-fill" style="width:90%; background:#1a9e72;"></div></div>
+          <span class="bar-val ok">18/20</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">11h – 12h</span>
+          <div class="bar-track"><div class="bar-fill" style="width:75%; background:#1a9e72;"></div></div>
+          <span class="bar-val ok">15/20</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- pagina 3 - permanencia -->
+    <div class="page" id="p3">
+      <div class="page-header">
+        <h1>Tempo de Internação</h1>
+        <p>O que tá travando a alta dos pacientes — quem tá esperando o quê</p>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Internados agora</div>
+          <div class="metric-value">134</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Dias em média</div>
+          <div class="metric-value warn" id="m3-dias">8,4</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Altas hoje</div>
+          <div class="metric-value ok" id="m3-alt">11</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Com pendência</div>
+          <div class="metric-value danger" id="m3-pend">43</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">O que tá segurando a alta</div>
+          <div class="bar-row">
+            <span class="bar-label">Fisioterapia</span>
+            <div class="bar-track"><div class="bar-fill" style="width:60%; background:#b87300;"></div></div>
+            <span class="bar-val warn">18</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Serviço social</span>
+            <div class="bar-track"><div class="bar-fill" style="width:43%; background:#b87300;"></div></div>
+            <span class="bar-val warn">13</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Exames lab.</span>
+            <div class="bar-track"><div class="bar-fill" style="width:80%; background:#c0392b;"></div></div>
+            <span class="bar-val danger">24</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Farmácia</span>
+            <div class="bar-track"><div class="bar-fill" style="width:30%; background:#1a9e72;"></div></div>
+            <span class="bar-val ok">9</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">CCIH</span>
+            <div class="bar-track"><div class="bar-fill" style="width:20%; background:#1a9e72;"></div></div>
+            <span class="bar-val ok">6</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Internados há mais tempo</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Leito</th>
+                  <th>Dias</th>
+                  <th>Alta</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UTI 07</td>
+                  <td>22 dias</td>
+                  <td><span class="badge badge-danger">sem data</span></td>
+                </tr>
+                <tr>
+                  <td>Ala A – 14</td>
+                  <td>17 dias</td>
+                  <td><span class="badge badge-warn">essa semana</span></td>
+                </tr>
+                <tr>
+                  <td>Ala B – 03</td>
+                  <td>12 dias</td>
+                  <td><span class="badge badge-ok">amanhã</span></td>
+                </tr>
+                <tr>
+                  <td>Ala C – 22</td>
+                  <td>11 dias</td>
+                  <td><span class="badge badge-danger">sem data</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="p4">
+      <div class="page-header">
+        <h1>Antimicrobianos</h1>
+        <p>Acompanhamento do uso de Meropenem e Micafungina — quem tá fora do protocolo</p>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Usando agora</div>
+          <div class="metric-value">31</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Uso muito longo</div>
+          <div class="metric-value danger" id="m4-aler">7</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Dentro do protocolo</div>
+          <div class="metric-value warn" id="m4-prot">68%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Trocas essa semana</div>
+          <div class="metric-value ok" id="m4-desc">5</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Meropenem por setor</div>
+          <div class="bar-row">
+            <span class="bar-label">UTI Adulto</span>
+            <div class="bar-track"><div class="bar-fill" style="width:85%; background:#c0392b;"></div></div>
+            <span class="bar-val danger">17</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Ala Cirúrgica</span>
+            <div class="bar-track"><div class="bar-fill" style="width:40%; background:#b87300;"></div></div>
+            <span class="bar-val warn">8</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Clínica Médica</span>
+            <div class="bar-track"><div class="bar-fill" style="width:25%; background:#1a9e72;"></div></div>
+            <span class="bar-val ok">5</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Pediatria</span>
+            <div class="bar-track"><div class="bar-fill" style="width:10%; background:#1a9e72;"></div></div>
+            <span class="bar-val ok">2</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Micafungina por setor</div>
+          <div class="bar-row">
+            <span class="bar-label">UTI Adulto</span>
+            <div class="bar-track"><div class="bar-fill" style="width:60%; background:#b87300;"></div></div>
+            <span class="bar-val warn">9</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Ala Cirúrgica</span>
+            <div class="bar-track"><div class="bar-fill" style="width:33%; background:#1a9e72;"></div></div>
+            <span class="bar-val ok">5</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Clínica Médica</span>
+            <div class="bar-track"><div class="bar-fill" style="width:20%; background:#1a9e72;"></div></div>
+            <span class="bar-val ok">3</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Oncologia</span>
+            <div class="bar-track"><div class="bar-fill" style="width:13%; background:#1a9e72;"></div></div>
+            <span class="bar-val ok">2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Pacientes usando há muito tempo — CCIH precisa ver</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Leito</th>
+                <th>Remédio</th>
+                <th>Dias</th>
+                <th>Protocolo</th>
+                <th>O que fazer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>UTI 03</td>
+                <td>Meropenem</td>
+                <td>14 dias</td>
+                <td><span class="badge badge-danger">fora</span></td>
+                <td>ver com urgência</td>
+              </tr>
+              <tr>
+                <td>UTI 11</td>
+                <td>Meropenem</td>
+                <td>10 dias</td>
+                <td><span class="badge badge-warn">parcial</span></td>
+                <td>avaliar troca</td>
+              </tr>
+              <tr>
+                <td>Cirúrg. 05</td>
+                <td>Micafungina</td>
+                <td>9 dias</td>
+                <td><span class="badge badge-warn">parcial</span></td>
+                <td>avaliar troca</td>
+              </tr>
+              <tr>
+                <td>UTI 08</td>
+                <td>Meropenem</td>
+                <td>7 dias</td>
+                <td><span class="badge badge-ok">ok</span></td>
+                <td>continuar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function atualizarRelogio() {
+    var agora = new Date();
+    var h = String(agora.getHours()).padStart(2, '0');
+    var m = String(agora.getMinutes()).padStart(2, '0');
+    var s = String(agora.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+  }
+  setInterval(atualizarRelogio, 1000);
+  atualizarRelogio();
+
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.nav-item').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function rand(min, max) { return Math.round(Math.random() * (max - min) + min); }
+
+  setInterval(function() {
+    var el;
+    el = document.getElementById('m1-chk');   if (el) el.textContent = rand(40, 60);
+    el = document.getElementById('m1-conf');  if (el) el.textContent = rand(68, 82) + '%';
+    el = document.getElementById('m2-esp');   if (el) el.textContent = rand(4, 9);
+    el = document.getElementById('m2-pol');   if (el) el.textContent = rand(2, 6);
+    el = document.getElementById('m2-tmp');   if (el) el.textContent = rand(40, 70) + ' min';
+    el = document.getElementById('m3-dias');  if (el) el.textContent = (rand(78, 92) / 10).toFixed(1).replace('.', ',');
+    el = document.getElementById('m3-alt');   if (el) el.textContent = rand(8, 14);
+    el = document.getElementById('m4-prot');  if (el) el.textContent = rand(62, 76) + '%';
+    el = document.getElementById('m4-desc');  if (el) el.textContent = rand(3, 7);
+  }, 4000);
+</script>
+
+</body>
+</html>
