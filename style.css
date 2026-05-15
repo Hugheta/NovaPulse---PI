@@ -101,7 +101,7 @@ header {
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   padding: 10px 12px;
   border-radius: 8px;
   cursor: pointer;
